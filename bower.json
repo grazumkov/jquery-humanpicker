@@ -1,0 +1,33 @@
+{
+  "name": "jquery.humanpicker",
+  "description": "Specialized custom control to select the number of people for web form",
+  "main": "app.js",
+  "keywords": [
+    "human",
+    "picker",
+    "control",
+    "people",
+    "kid",
+    "form"
+  ],
+  "authors": [
+    "xtratio"
+  ],
+  "license": "MIT",
+  "moduleType": [
+    "globals"
+  ],
+  "homepage": "https://github.com/xtratio/humanpicker",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "nano": "https://github.com/trix/nano.git"
+  }
+}

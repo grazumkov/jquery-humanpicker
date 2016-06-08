@@ -1,0 +1,37 @@
+{
+  "name": "jquery.humanpicker",
+  "version": "1.0.0",
+  "description": "Specialized custom control to select the number of people for web form",
+  "main": "./src/jquery.humanpicker.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xtratio/jquery-humanpicker.git"
+  },
+  "author": "xtratio",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "clean": "de dist/*.*",
+    "mincss": "cleancss -o dist/jquery.humanpicker.min.css css/jquery.humanpicker.css",
+    "minjs": "uglifyjs dist/jquery.humanpicker.js -c -m -o dist/jquery.humanpicker.min.js",
+    "buildjs": "browserify src/jquery.humanpicker.js -d -o dist/jquery.humanpicker.js",
+    "build": "npm run clean && npm run buildjs && npm run minjs && npm run mincss"
+  },
+  "devDependencies": {
+    "browserify-shim": "^3.8.12",
+    "clean-css": "^3.4.9",
+    "del-cli": "^0.1.2",
+    "uglifyjs": "^2.4.10"
+  },
+  "browser": {
+    "nano": "./bower_components/nano/nano.js"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "nano": "nano"
+  }
+}
