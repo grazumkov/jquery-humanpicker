@@ -22,7 +22,7 @@ font-family:'humanpickerfont';
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
-    width: 32px;
+    width: 35px;
     height: 33px;
     margin-bottom: 15px;
 }
@@ -85,7 +85,8 @@ font-family:'humanpickerfont';
     line-height: 33px;
 }
 .human-picker-item.human-picker-item-kid{
-    width: 30px;
+    min-width: 30px;
+    max-width: 50px;
 }
 .human-picker-item.human-picker-item-kid .kid-age-caption{
     display: none;
@@ -97,6 +98,8 @@ font-family:'humanpickerfont';
     font-size: 10px;
     text-align: center;
     color: #333;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .human-picker-item.human-picker-item-kid.human-picker-item-selected .kid-age-caption{
     display: block;

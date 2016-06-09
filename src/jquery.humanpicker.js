@@ -1,16 +1,29 @@
 /* global jQuery */
 
+// TODO: add gulp builder
+// TODO: add documentation
+// TODO: demo page
+// TODO: add buty animation add/remove icons
+
 ;(function($, window, document, undefined) { 
   'use strict';
   var HumanPicker,
       nano = require("nano");
-  
+      
   // ===========================
   // HUMAN PICKER CLASS
   // ===========================
-  HumanPicker = function (element, options) { 
+  HumanPicker = function(element, options) { 
     this.options   = $.extend({}, HumanPicker.DEFAULTS, options);
-    
+
+    // generate age items from locale settings
+    // use value as index
+    this.kidAgeItems = [];
+    var kages = HumanPicker.i18n[this.options.lang]["kidAges"] || [];
+    this.kidAgeItems = $.map(kages, function(age, i){
+      return { text: age, value: i };
+    });
+
     this.$element  = $(element);
     this.$bodyListContainer = this._renderTpl(HumanPicker.Tpl.BodyListContainer, 
                                   {id: this.$element.prop('id')+'_HumanPickerListContainer'});
@@ -73,7 +86,7 @@
     };
     
     // hidden kid age picker
-    if(opts.kidAgeItems.length > 0)
+    if(self.kidAgeItems.length > 0)
     {
       self._renderKidAgeList();
     }
@@ -86,18 +99,18 @@
   HumanPicker.prototype._renderKidAgeList = function(){
     var self = this,
         opts = this.options,
-        groupMaxItems = opts.kidAgeItemsGroupMax || 1,
-        groupsCount = Math.max(((opts.kidAgeItems.length || 1) / groupMaxItems).toFixed() - 0, 1),
+        groupMaxItems = opts.kidAgeItemsGroupMax || 9,
+        groupsCount = Math.max(((self.kidAgeItems.length || 1) / groupMaxItems).toFixed() - 0, 1),
         list, i,j,max;
         
       this.$ageListWrap.empty();
         
       for(i=0; i<groupsCount; i++){
         list = self._renderTpl(HumanPicker.Tpl.AgeList);
-        max = Math.min((i*groupMaxItems)+groupMaxItems, opts.kidAgeItems.length);
+        max = Math.min((i*groupMaxItems)+groupMaxItems, self.kidAgeItems.length);
         for(j=i*groupMaxItems; j<max; j++)
         {
-          self._renderTpl(HumanPicker.Tpl.AgeListItem, opts.kidAgeItems[j])
+          self._renderTpl(HumanPicker.Tpl.AgeListItem, self.kidAgeItems[j])
             .appendTo(list);
         }
         list.appendTo(this.$ageListWrap);
@@ -114,20 +127,20 @@
   };
   
   HumanPicker.prototype._setValue = function(value){
-    // TODO: Realize     
+    // TODO: Realize
   }
-  
+
   HumanPicker.prototype._getValue = function(){
     var objRes = {},
         inputAdults = this.$element.find('input[data-role="adults"]'),
         inputKids = this.$element.find('input[data-role="kids"]'),
-        inputKidAges = this.$element.find('.'+HumanPicker.CLASS.classItemSelected+' input[data-role="kid-age"]');      
+        inputKidAges = this.$element.find('.'+HumanPicker.CLASS.classItemSelected+' input[data-role="kid-age"]');
         
     objRes.adults = inputAdults.val();
     objRes.kids = inputKids.val();
-    
+
     objRes.kidsAges = objRes.kidsAges || [];
-    if(inputKidAges.length){       
+    if(inputKidAges.length){
       objRes.kidsAges = $.map(inputKidAges, function(item, index){; 
         return item.value-0;
       });
@@ -157,6 +170,7 @@
             
   };
   
+  // TODO: replace/remove attribute selectors
   HumanPicker.prototype._bindEvents = function(){
     var self = this,
         updateKidsCountValue = function(){
@@ -281,11 +295,13 @@
         tooltipItem: "Добавить",
         tooltipItemSelected: "Удалить",
         tooltipEditAge: "Редактировать возраст",
+        kidAges: ["0 лет", "1 год", "2 года", "3 года", "4 года", "5 лет", "6 лет", "7 лет", "8 лет", "9 лет", "10 лет", "11 лет", "12 лет", "13 лет", "14 лет", "15 лет", "16 лет", "17 лет"]
       },
       "en": {
         tooltipItem: "Add",
         tooltipItemSelected: "Remove",
-        tooltipEditAge: "Edit age"
+        tooltipEditAge: "Edit age",
+        kidAges: ["0 years", "1 year", "2 years", "3 years", "4 years", "5 years", "6 years", "7 years", "8 years", "9 years", "10 years", "11 years", "12 years", "13 years", "14 years", "15 years", "16 years", "17 years"]
       }
   };
   
@@ -305,8 +321,7 @@
   };
   
   HumanPicker.VERSION  = '1.0.0'
-  
-  // TODO: kidAgeItems translate?????
+
   HumanPicker.DEFAULTS = {
     adultsCount: 4, // maxAdults for select
     kidsCount: 3, // max kids for select
@@ -315,30 +330,10 @@
       kids: 0, // kids selected
       kidsAges: [] // array ages of kids based on kids selected count, default age for kid 0
     },
-    lang: "ru",
-    adultsParamName: "adults",
-    kidsParamName: "kids",
-    kidsAgesParamName: "kidsAges[]",
-    kidAgeItems:[
-      {text: "0 лет", value: 0},
-      {text: "1 год", value: 1},
-      {text: "2 года", value: 2},
-      {text: "3 года", value: 3},
-      {text: "4 года", value: 4},
-      {text: "5 лет", value: 5},
-      {text: "6 лет", value: 6},
-      {text: "7 лет", value: 7},
-      {text: "8 лет", value: 8},
-      {text: "9 лет", value: 9},
-      {text: "10 лет", value: 10},
-      {text: "11 лет", value: 11},
-      {text: "12 лет", value: 12},
-      {text: "13 лет", value: 13},
-      {text: "14 лет", value: 14},
-      {text: "15 лет", value: 15},
-      {text: "16 лет", value: 16},
-      {text: "17 лет", value: 17}
-    ],
+    lang: "en",
+    adultsParamName: "adults", // hidden input parameter name
+    kidsParamName: "kids", // hidden input parameter name
+    kidsAgesParamName: "kidsAges[]", // hidden input parameter name
     kidAgeItemsGroupMax: 9
   };
   
