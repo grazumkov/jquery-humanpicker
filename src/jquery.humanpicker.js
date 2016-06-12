@@ -1,9 +1,9 @@
 /* global jQuery */
+/* global require */
 
-// TODO: add gulp builder
-// TODO: add documentation
+// TODO: documentation
 // TODO: demo page
-// TODO: add buty animation add/remove icons
+// TODO: animation add/remove icons
 
 ;(function($, window, document, undefined) { 
   'use strict';
@@ -66,7 +66,7 @@
       self._renderTpl(HumanPicker.Tpl.AdultItem)
         .addClass(i<initVal.adults?HumanPicker.CLASS.classItemSelected:'')
         .appendTo($wrap);
-    };
+    }
     
     // adults, kids input
     self._renderTpl(HumanPicker.Tpl.HiddenInput, {role: "adults", name: opts.adultsParamName, value: initVal.adults})
@@ -83,7 +83,7 @@
           .prop("disabled",i>=initVal.kids))
         .addClass(i<initVal.kids?HumanPicker.CLASS.classItemSelected:'')
         .appendTo($wrap);
-    };
+    }
     
     // hidden kid age picker
     if(self.kidAgeItems.length > 0)
@@ -118,7 +118,7 @@
   };
   
   HumanPicker.prototype.value = function(value){
-    if(value && typeof value == 'object'){
+    if(value && typeof value === 'object'){
       this._setValue(value);
     }
     else{
@@ -128,7 +128,7 @@
   
   HumanPicker.prototype._setValue = function(value){
     // TODO: Realize
-  }
+  };
 
   HumanPicker.prototype._getValue = function(){
     var objRes = {},
@@ -141,7 +141,7 @@
 
     objRes.kidsAges = objRes.kidsAges || [];
     if(inputKidAges.length){
-      objRes.kidsAges = $.map(inputKidAges, function(item, index){; 
+      objRes.kidsAges = $.map(inputKidAges, function(item){
         return item.value-0;
       });
     }
@@ -190,8 +190,7 @@
     self.$element
       .find("[data-role='kid-item']")
       .on("click",function(e){
-        var $this = $(this),
-            curVal = $this.find('input[data-role="kid-age"]').val() || 0;
+        var $this = $(this);
         
         self._kidAgePickerClose();
         
@@ -233,7 +232,7 @@
       .on("click.humanpicker.document", function(e){
         if($(e.target).closest('[data-role="kid-age-list"]').length ||
            $(e.target).closest('[data-role="kid-item"]').length){
-            e.preventDefault()
+            e.preventDefault();
             return;
         }
         self._kidAgePickerClose();
@@ -244,7 +243,7 @@
       .on("resize.humanpicker.window", function(e){
         self._kidAgePickerClose();
       });
-  }
+  };
   HumanPicker.prototype._kidAgePickerClose = function(){
     var kidAgeList = this.$ageListWrap;
     kidAgeList.hide();
@@ -320,7 +319,7 @@
     HiddenInput: '<input data-role="{role}" name="{name}" type="hidden" value="{value}">',
   };
   
-  HumanPicker.VERSION  = '1.0.0'
+  HumanPicker.VERSION  = '1.0.0';
 
   HumanPicker.DEFAULTS = {
     adultsCount: 4, // maxAdults for select
@@ -341,18 +340,18 @@
   // INIT HUMAN PICKER JQUERY PLUGIN
   // =====================
   function humanPickerPlugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('xt.HumanPicker')
-      var options = typeof option == 'object' && option
+    return this.each(function() {
+      var $this   = $(this);
+      var data    = $this.data('xt.HumanPicker');
+      var options = typeof option === 'object' && option;
 
-      if (!data) $this.data('xt.HumanPicker', (data = new HumanPicker(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
+      if (!data){ $this.data('xt.HumanPicker', (data = new HumanPicker(this, options))); }
+      if (typeof option === 'string') { data[option](); }
+    });
   }
   
-  $.fn.HumanPicker             = humanPickerPlugin
-  $.fn.HumanPicker.Constructor = HumanPicker
+  $.fn.HumanPicker             = humanPickerPlugin;
+  $.fn.HumanPicker.Constructor = HumanPicker;
   
   // =====================
   // HUMAN PICKER DATA-API
@@ -360,10 +359,10 @@
 
   $(window).on('load', function () {
     $('[data-control="humanpicker"]').each(function () {
-      var $element = $(this)
-      var data = $element.data()
-      humanPickerPlugin.call($element, data)
-    })
-  })
+      var $element = $(this);
+      var data = $element.data();
+      humanPickerPlugin.call($element, data);
+    });
+  });
   
 })( jQuery, window, document );

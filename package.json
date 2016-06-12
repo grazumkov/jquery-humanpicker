@@ -11,17 +11,29 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "clean": "de dist/*.*",
-    "mincss": "cleancss -o dist/jquery.humanpicker.min.css css/jquery.humanpicker.css",
-    "minjs": "uglifyjs dist/jquery.humanpicker.js -c -m -o dist/jquery.humanpicker.min.js",
-    "buildjs": "browserify src/jquery.humanpicker.js -d -o dist/jquery.humanpicker.js",
-    "build": "npm run clean && npm run buildjs && npm run minjs && npm run mincss"
+    "buildcss": "gulp css",
+    "buildjs": "gulp js",
+    "watch": "gulp watch",
+    "build": "gulp build"
   },
   "devDependencies": {
     "browserify-shim": "^3.8.12",
     "clean-css": "^3.4.9",
-    "del-cli": "^0.1.2",
-    "uglifyjs": "^2.4.10"
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean-css": "^2.0.10",
+    "gulp-jshint": "^2.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-rimraf": "^0.2.0",
+    "gulp-sequence": "^0.4.5",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.3",
+    "gulp-util": "^3.0.7",
+    "jshint": "^2.9.1",
+    "jshint-stylish": "^2.1.0",
+    "run-sequence": "^1.2.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   },
   "browser": {
     "nano": "./bower_components/nano/nano.js"
@@ -33,5 +45,30 @@
   },
   "browserify-shim": {
     "nano": "nano"
+  },
+  "jshintConfig": {
+    "globals": {
+      "define": false
+    },
+    "esversion": 5,
+    "bitwise": true,
+    "browser": true,
+    "curly": true,
+    "eqeqeq": true,
+    "forin": true,
+    "immed": true,
+    "indent": 2,
+    "latedef": "nofunc",
+    "newcap": true,
+    "noarg": true,
+    "noempty": true,
+    "nonbsp": true,
+    "nonew": true,
+    "strict": false,
+    "globalstrict": "global",
+    "sub": true,
+    "supernew": true,
+    "undef": true,
+    "unused": true
   }
 }
