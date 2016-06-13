@@ -1,0 +1,40 @@
+{
+    "name": "Humanpicker",
+    "title": "jQuery Humanpicker",
+    "description": "jQuery control to select the number of people for web form.",
+    "keywords": [
+        "human",
+        "picker",
+        "control",
+        "people",
+        "kid",
+        "form",
+        "travel"
+    ],
+    "version": "1.0.0",
+    "author": {
+        "name": "xtratio",
+        "email": "extremumratio@gmail.com",
+        "url": "https://github.com/xtratio"
+    },
+    "maintainers": [
+        {
+            "name": "xtratio",
+            "email": "extremumratio@gmail.com",
+            "url": "https://github.com/xtratio"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/xtratio/jquery-humanpicker/blob/master/LICENSE"
+        }
+    ],
+    "bugs": "https://github.com/xtratio/jquery-humanpicker/issues",
+    "homepage": "https://github.com/xtratio/jquery-humanpicker",
+    "docs": "https://github.com/xtratio/jquery-humanpicker",
+    "download": "https://github.com/xtratio/jquery-humanpicker",
+    "dependencies": {
+        "jquery": ">=1.11"
+    }
+}
