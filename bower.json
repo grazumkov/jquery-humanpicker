@@ -1,14 +1,16 @@
 {
   "name": "jquery.humanpicker",
-  "description": "Specialized custom control to select the number of people for web form",
-  "main": "app.js",
+  "description": "Jquery control to select the number of people for web form",
+  "version": "1.0.0",
+  "main": "./dist/jquery.humanpicker.js",
   "keywords": [
     "human",
     "picker",
     "control",
     "people",
     "kid",
-    "form"
+    "form",
+    "travel"
   ],
   "authors": [
     "xtratio"
@@ -23,11 +25,16 @@
     "**/.*",
     "node_modules",
     "bower_components",
+    "demo",
     "test",
-    "tests"
+    "tests",
+    "*.md",
+    "gulpfile.js",
+    "package.json",
+    "humanpicker.jquery.json"
   ],
   "dependencies": {
-    "jquery": "~2.1.4",
+    "jquery": "~1.11",
     "nano": "https://github.com/trix/nano.git"
   }
 }

@@ -1,8 +1,6 @@
 /* global jQuery */
 /* global require */
 
-// TODO: documentation
-// TODO: demo page
 // TODO: animation add/remove icons
 
 ;(function($, window, document, undefined) { 

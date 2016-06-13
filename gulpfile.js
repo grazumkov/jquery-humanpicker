@@ -17,7 +17,7 @@ var gulp = require('gulp'),
 
 var path = {
         js: 'src/**/*.js',
-        css: 'css/**/*.css',
+        css: 'src/**/*.css',
         dist: 'dist/'
     };
 
