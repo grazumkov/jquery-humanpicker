@@ -31,7 +31,8 @@
     "*.md",
     "gulpfile.js",
     "package.json",
-    "humanpicker.jquery.json"
+    "humanpicker.jquery.json",
+    "screen"
   ],
   "dependencies": {
     "jquery": "~1.11",
