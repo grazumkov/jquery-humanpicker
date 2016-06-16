@@ -14,7 +14,8 @@
     "buildcss": "gulp css",
     "buildjs": "gulp js",
     "watch": "gulp watch",
-    "build": "gulp build"
+    "dev": "set NODE_ENV=development&&gulp build",
+    "build": "set NODE_ENV=production&&gulp build"
   },
   "devDependencies": {
     "browserify": "^13.0.1",
@@ -23,6 +24,7 @@
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-clean-css": "^2.0.10",
+    "gulp-if": "^2.0.1",
     "gulp-jshint": "^2.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-rimraf": "^0.2.0",

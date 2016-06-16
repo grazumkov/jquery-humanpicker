@@ -13,7 +13,10 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
-    packageJSON  = require('./package');
+    packageJSON  = require('./package'),
+    gulpif = require('gulp-if');
+
+const isDev = !process.env.NODE_ENV || process.env.NODE_ENV == "development";
 
 var path = {
         js: 'src/**/*.js',
@@ -43,7 +46,7 @@ var jsMainPath = "src/jquery.humanpicker.js",
     jsDestName = "jquery.humanpicker.js";
 var brOpts = {
   entries: [jsMainPath],
-  debug: true
+  debug: isDev // gen sourcemaps
 };
 var b = browserify(brOpts);
 
@@ -53,12 +56,12 @@ gulp.task('js', ['jslint'], function(){
     .pipe(source(jsDestName))
     .pipe(gulp.dest(path.dist))
     .pipe(buffer())
-    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(gulpif(isDev, sourcemaps.init({loadMaps: true})))
     .pipe(uglify())
     .pipe(rename({
         suffix: '.min'
         }))
-    .pipe(sourcemaps.write('./'))
+    .pipe(gulpif(isDev, sourcemaps.write()))
     .pipe(gulp.dest(path.dist));
 });
 
