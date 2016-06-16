@@ -17,6 +17,7 @@
     "build": "gulp build"
   },
   "devDependencies": {
+    "browserify": "^13.0.1",
     "browserify-shim": "^3.8.12",
     "clean-css": "^3.4.9",
     "gulp": "^3.9.0",
