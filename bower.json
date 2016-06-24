@@ -1,7 +1,7 @@
 {
   "name": "jquery.humanpicker",
   "description": "Jquery control to select the number of people for web form",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "./dist/jquery.humanpicker.js",
   "keywords": [
     "human",

@@ -1,6 +1,6 @@
 {
   "name": "jquery.humanpicker",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Specialized custom control to select the number of people for web form",
   "main": "./src/jquery.humanpicker.js",
   "repository": {

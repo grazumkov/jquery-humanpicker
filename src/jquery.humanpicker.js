@@ -317,7 +317,7 @@
     HiddenInput: '<input data-role="{role}" name="{name}" type="hidden" value="{value}">',
   };
   
-  HumanPicker.VERSION  = '1.0.0';
+  HumanPicker.VERSION  = '0.1.0';
 
   HumanPicker.DEFAULTS = {
     adultsCount: 4, // maxAdults for select
